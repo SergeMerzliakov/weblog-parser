@@ -36,6 +36,10 @@ To just run the unit tests
 
 The unit tests inside the **org.weblog.LogProcessorTest** classes highlight the basic statistics
 
+The sample log file to be processed is inside the repo at:
+
+    src/test/resources/programming-task-example-data.log
+
 
 
 ## Limitations
