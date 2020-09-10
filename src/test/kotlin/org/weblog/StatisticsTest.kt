@@ -5,9 +5,8 @@ import org.junit.Test
 
 class StatisticsTest {
 
-
 	@Test
-	fun shouldProcessIPAddresses() {
+	fun processIPAddresses() {
 		// given
 		val stats = Statistics()
 
@@ -21,7 +20,7 @@ class StatisticsTest {
 
 
 	@Test
-	fun shouldCountIPAddresses() {
+	fun countIPAddresses() {
 		// given
 		val address = "127.0.0.1"
 		val stats = Statistics()
@@ -35,8 +34,9 @@ class StatisticsTest {
 		assertThat(stats.addressCount(address)).isEqualTo(2)
 	}
 
+
 	@Test
-	fun shouldProcessDuplicateUrls() {
+	fun processDuplicateUrls() {
 		//given
 		val stats = Statistics()
 
@@ -49,8 +49,9 @@ class StatisticsTest {
 		assertThat(stats.urlCount("http://foo")).isEqualTo(2)
 	}
 
+
 	@Test
-	fun shouldProcessUrls() {
+	fun processUrls() {
 		// given
 		val url = "http://foo"
 		val stats = Statistics()
@@ -64,8 +65,9 @@ class StatisticsTest {
 		assertThat(stats.urlCount(url)).isEqualTo(2)
 	}
 
+
 	@Test
-	fun shouldProcessUniqeUrls() {
+	fun processUniqeUrls() {
 		// given
 		val stats = Statistics()
 
@@ -78,8 +80,9 @@ class StatisticsTest {
 		assertThat(stats.uniqueUrls()).isEqualTo(3)
 	}
 
+
 	@Test
-	fun shouldRankTop3Urls() {
+	fun rankTop3Urls() {
 		// given
 		val N = 3
 		val google = "http://google.com"
@@ -110,7 +113,7 @@ class StatisticsTest {
 
 
 	@Test
-	fun shouldRankTopUrl() {
+	fun rankTopUrl() {
 		// given
 		val N = 1
 		val google = "http://google.com"
@@ -131,12 +134,11 @@ class StatisticsTest {
 
 		assertThat(ranks[0].first).isEqualTo(google)
 		assertThat(ranks[0].second).isEqualTo(10)
-
 	}
 
 
 	@Test
-	fun shouldRankTop3Addresses() {
+	fun rankTop3Addresses() {
 		// given
 		val N = 3
 		val google = "127.0.0.1"
@@ -167,7 +169,7 @@ class StatisticsTest {
 
 
 	@Test
-	fun shouldRankTopAddress() {
+	fun rankTopAddress() {
 		// given
 		val N = 1
 		val google = "127.0.0.1"
@@ -192,7 +194,7 @@ class StatisticsTest {
 
 
 	@Test
-	fun shouldBeEmpty() {
+	fun beEmpty() {
 		// given
 		val stats = Statistics()
 
@@ -203,6 +205,7 @@ class StatisticsTest {
 		assertThat(stats.topUrls(3)).isEmpty()
 	}
 
+
 	/**
 	 * helper to add lots of the same url for 'top' calculations
 	 */
@@ -211,6 +214,7 @@ class StatisticsTest {
 			stats.addUrl(url)
 		}
 	}
+
 
 	/**
 	 * helper to add lots of the same address for 'top' calculations

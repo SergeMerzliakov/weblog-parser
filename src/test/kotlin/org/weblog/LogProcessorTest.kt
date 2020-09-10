@@ -2,23 +2,56 @@ package org.weblog
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import java.io.*
+import java.io.File
 
+/**
+ * These tests answer the specific questions required for the code challenge (with some code
+ * duplication for the sake of simplicity)
+
+1) The number of unique IP addresses
+2)	The top 3 most visited URLs
+3) The top 3 most active IP addresses
+ *
+ */
 class LogProcessorTest {
 
+	private val sampleLog = File(javaClass.getResource("/programming-task-example-data.log").toURI())
+
 	@Test
-	fun shouldLoadAndFindTop3Urls() {
+	fun findUniqueUrls() {
 		// given
-		val f = File(javaClass.getResource("/programming-task-example-data.log").toURI())
 		val processor = LogProcessor()
 
 		// when
-		val statistics = processor.read(f)
+		val statistics = processor.read(sampleLog)
+
+		// then
+		assertThat(statistics.uniqueUrls()).isEqualTo(22)
+	}
+
+
+	@Test
+	fun findUniqueAddress() {
+		// given
+		val processor = LogProcessor()
+
+		// when
+		val statistics = processor.read(sampleLog)
 
 		// then
 		assertThat(statistics.uniqueAddresses()).isEqualTo(11)
-		assertThat(statistics.uniqueUrls()).isEqualTo(22)
+	}
 
+
+	@Test
+	fun loadAndFindTop3Urls() {
+		// given
+		val processor = LogProcessor()
+
+		// when
+		val statistics = processor.read(sampleLog)
+
+		// then
 		val topUrls = statistics.topUrls(3)
 		assertThat(topUrls).hasSize(3)
 
@@ -32,19 +65,16 @@ class LogProcessorTest {
 		assertThat(topUrls[2].second).isEqualTo(1)
 	}
 
+
 	@Test
-	fun shouldLoadAndFindTop3Address() {
+	fun loadAndFindTop3Address() {
 		// given
-		val f = File(javaClass.getResource("/programming-task-example-data.log").toURI())
 		val processor = LogProcessor()
 
 		// when
-		val statistics = processor.read(f)
+		val statistics = processor.read(sampleLog)
 
 		// then
-		assertThat(statistics.uniqueAddresses()).isEqualTo(11)
-		assertThat(statistics.uniqueUrls()).isEqualTo(22)
-
 		val topAddresses = statistics.topAddresses(3)
 		assertThat(topAddresses).hasSize(3)
 
@@ -58,8 +88,9 @@ class LogProcessorTest {
 		assertThat(topAddresses[2].second).isEqualTo(3)
 	}
 
+
 	@Test(expected = LogException::class)
-	fun shouldFailForMissingFile() {
+	fun failForMissingFile() {
 		// given
 		val f = File("/missing.log")
 		val processor = LogProcessor()
