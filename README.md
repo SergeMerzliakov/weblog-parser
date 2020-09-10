@@ -21,18 +21,18 @@ Prerequisites:
 
 ### Building the project
 
-A gradlew wrapper is deployed inside the repository and will download all relevant
-dependencies.
+A gradlew wrapper is deployed inside the repository and will download all relevant dependencies.
+There is NO need to have gradle installed locally.
 
-To build and run all unit tests
+To build and run all unit tests:
 
     gradlew build
     
-To just run the unit tests
+To just run the unit tests:
 
     gradlew test
 
-## Execution
+## The Task
 
 The unit tests inside the **org.weblog.LogProcessorTest** classes highlight the basic statistics
 
@@ -44,6 +44,8 @@ The sample log file to be processed is inside the repo at:
 
 ## Limitations
 * Limited parsing of log file format, using regular expressions to extract key values, rather
- than a more complete (grammer based) parser
+ than a more complete (grammer based) parser. There appears to be no decent log parsing library,
+ and given the highly variable formats of logs, not really surprising.
 * Needs better processing of URL to distinguish valid URLs (full vs paths only)
 * Better test coverage - current tests highlight the kinds of tests required (positive, negative and edge cases)
+* Logging is basic and not of production quality

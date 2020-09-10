@@ -26,6 +26,7 @@ class LogProcessor {
 		try {
 			if (!f.exists())
 				throw FileNotFoundException("Log file not found at [${f.absolutePath}]")
+
 			f.forEachLine { processLine(statistics, it) }
 
 			log.info("Processed complete for log file [${f.absolutePath}]")
@@ -36,11 +37,14 @@ class LogProcessor {
 		return statistics
 	}
 
+
 	/**
 	 * Extract IP and addresses only with regular expressions, ignoring rest
 	 * of log entry
 	 */
 	private fun processLine(statistics: Statistics, data: String) {
+		log.debug("Processing log entry [$data]")
+
 		IP_REGEX.find(data)?.let {
 			statistics.addAddress(it.value)
 		}

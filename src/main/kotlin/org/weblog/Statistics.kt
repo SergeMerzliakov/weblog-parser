@@ -23,10 +23,12 @@ class Statistics {
 
 	fun uniqueUrls() = urls.size
 
+
 	fun addAddress(ip: String) {
 		val count = addresses.getOrDefault(ip, 0) + 1
 		addresses[ip] = count
 	}
+
 
 	fun addUrl(url: String) {
 		// normalize url first
@@ -36,9 +38,8 @@ class Statistics {
 	}
 
 
-
 	/**
-	 * return top n urls
+	 * return top n commonest urls
 	 */
 	fun topUrls(n: Int): List<Pair<String, Int>> {
 		if (n < urls.size)
@@ -48,7 +49,7 @@ class Statistics {
 	}
 
 	/*
-	 * return top n addresses
+	 * return top n commonest addresses
 	 */
 	fun topAddresses(n: Int): List<Pair<String, Int>> {
 		if (n < addresses.size)
@@ -58,6 +59,9 @@ class Statistics {
 	}
 
 
+	/**
+	 * rank any list by integer value in map entry and return topN most common items
+	 */
 	private fun rankList(topN: Int, items: Map<String, Int>): List<Pair<String, Int>> {
 		if (items.isEmpty())
 			return listOf()
@@ -66,7 +70,8 @@ class Statistics {
 	}
 
 	/**
-	 * Not ideal but does attempt to remove some characters
+	 * try to reduce url duplication. The Java URL/URI classes are not great at doing this.
+	 * Not ideal, but does attempt to deal with trailing slashes
 	 */
 	private fun normalizeUrl(dirtyUrl: String): String {
 		return dirtyUrl.trim().replace(URL_REGEX, "")
