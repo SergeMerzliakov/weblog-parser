@@ -7,9 +7,6 @@ repositories {
     jcenter()
 }
 
-apply plugin: "application"
-mainClassName = "org.weblog.RunApplication"
-
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
@@ -26,10 +23,4 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
-}
-
-jar {
-    manifest {
-        attributes("Main-Class": mainClassName)
-    }
 }
