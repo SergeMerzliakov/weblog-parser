@@ -8,12 +8,11 @@ repositories {
 }
 
 apply plugin: "application"
-mainClassName = "com.hoolah.runner.RunApplication"
+mainClassName = "org.weblog.RunApplication"
 
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile "com.opencsv:opencsv:5.2"
 
     compile "org.apache.logging.log4j:log4j-api:2.12.1"
     compile "org.apache.logging.log4j:log4j-core:2.12.1"
