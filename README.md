@@ -1,6 +1,7 @@
 # Weblog Parser
-A **very basic** web log parser, which reads log entries and extracts the IP address
-and URL values. Statistics and counts are then available.
+This was code challenge for a technical role I applied for.
+
+A **very basic** web log parser, which reads log entries and extracts the IP address and URL values. Statistics and counts are then available.
 
 It is written in Kotlin and uses gradle 6 as the build tool.
 
