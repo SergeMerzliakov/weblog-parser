@@ -1,5 +1,5 @@
 # Weblog Parser
-This was code challenge for a technical role I applied for.
+This was code challenge for a technical role I applied for. It was completed in 3 hours, as that's all I ever allow myself for these.
 
 A **very basic** web log parser, which reads log entries and extracts the IP address and URL values. Statistics and counts are then available.
 
